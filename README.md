@@ -14,7 +14,7 @@ Smells like an experimental manipulative Lexer, huh?!
 
 **Heads-up:** I simply do this for fun; use at your own risk.
 
-![Image of Hodor by Jack Spellman](http://static1.squarespace.com/static/54f1ec5fe4b0c5fe2a2470bc/t/552fdbafe4b0e2a3eb3753c7/1429199794032/Hodor+Final)
+![Image of Hodor by Jack Spellman](hodor.jpg)
 
 > Hold the door! Holddoor! Hodor! https://youtu.be/5DoBY8M_bCg
 
