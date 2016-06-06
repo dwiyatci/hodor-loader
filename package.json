@@ -1,8 +1,8 @@
 {
-  "name": "hodor-loader",
-  "version": "0.0.4",
-  "description": "A Webpack loader for hodorifying JavaScript code",
-  "keywords": [
+  "name"           : "hodor-loader",
+  "version"        : "0.0.4",
+  "description"    : "A webpack loader for hodorifying JavaScript code",
+  "keywords"       : [
     "hodor",
     "webpack-loader",
     "ecosystem:webpack",
@@ -12,30 +12,30 @@
     "hold-the-door"
   ],
   "devDependencies": {
-    "babel-cli": "6.9.0",
+    "babel-cli"          : "6.9.0",
     "babel-preset-es2015": "6.9.0",
     "html-webpack-plugin": "2.19.0",
-    "rimraf": "2.5.2",
-    "tap-nyan": "0.0.2",
-    "tape": "4.5.1",
-    "updtr": "0.1.15",
-    "webpack": "1.13.1",
-    "webpack-dev-server": "1.14.1"
+    "rimraf"             : "2.5.2",
+    "tap-nyan"           : "0.0.2",
+    "tape"               : "4.5.1",
+    "updtr"              : "0.1.15",
+    "webpack"            : "1.13.1",
+    "webpack-dev-server" : "1.14.1"
   },
-  "scripts": {
-    "setup": "npm install rimraf updtr webpack webpack-dev-server babel-cli tape -g",
+  "scripts"        : {
+    "setup"        : "npm install rimraf updtr webpack webpack-dev-server babel-cli tape -g",
     "install:clean": "rimraf node_modules && npm install",
-    "clean": "rimraf dist",
-    "webpack": "webpack",
-    "watch": "webpack -w",
-    "start": "webpack-dev-server --inline --hot",
-    "update": "updtr",
+    "clean"        : "rimraf dist",
+    "webpack"      : "webpack",
+    "watch"        : "webpack -w",
+    "start"        : "webpack-dev-server --inline --hot",
+    "update"       : "updtr",
     "update:global": "npm run setup",
-    "test": "babel-node test.js | tnyan"
+    "test"         : "babel-node test.js | tnyan"
   },
-  "license": "WTFPL",
-  "repository": {
+  "license"        : "WTFPL",
+  "repository"     : {
     "type": "git",
-    "url": "git@github.com:dwiyatci/hodor-loader.git"
+    "url" : "git@github.com:dwiyatci/hodor-loader.git"
   }
 }
