@@ -39,7 +39,7 @@ Given this config:
     loaders: [
       {
         test  : /app\.js/,
-        loader: './',
+        loader: 'hodor',
       },
     ],
   },
