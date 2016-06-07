@@ -8,6 +8,11 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
 "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
 ```
 
+[![travis build](https://img.shields.io/travis/dwiyatci/hodor-loader.svg)](https://travis-ci.org/dwiyatci/hodor-loader)
+[![version](https://img.shields.io/npm/v/hodor-loader.svg)](https://www.npmjs.com/package/hodor-loader)
+[![downloads](https://img.shields.io/npm/dt/hodor-loader.svg)](http://npm-stat.com/charts.html?package=hodor-loader)
+[![WTFPL License](https://img.shields.io/badge/license-WTFPL-red.svg)](https://raw.githubusercontent.com/dwiyatci/hodor-loader/master/LICENSE.txt)
+
 This [webpack](https://github.com/webpack/webpack) loader allows statically replacing string surrounded by `hodorify()` syntax in JavaScript source code with [Hodor](http://awoiaf.westeros.org/index.php/Hodor) before it gets bundled and interpreted.
 
 Smells like an experimental manipulative Lexer, huh?!
