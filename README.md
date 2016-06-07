@@ -9,6 +9,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
 ```
 
 [![travis build](https://img.shields.io/travis/dwiyatci/hodor-loader.svg)](https://travis-ci.org/dwiyatci/hodor-loader)
+[![codecov coverage](https://img.shields.io/codecov/c/github/dwiyatci/hodor-loader.svg)](https://codecov.io/gh/dwiyatci/hodor-loader)
 [![version](https://img.shields.io/npm/v/hodor-loader.svg)](https://www.npmjs.com/package/hodor-loader)
 [![downloads](https://img.shields.io/npm/dt/hodor-loader.svg)](http://npm-stat.com/charts.html?package=hodor-loader)
 [![WTFPL License](https://img.shields.io/badge/license-WTFPL-red.svg)](https://raw.githubusercontent.com/dwiyatci/hodor-loader/master/LICENSE.txt)
