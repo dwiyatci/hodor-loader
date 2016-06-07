@@ -1,5 +1,6 @@
 {
   "name"           : "hodor-loader",
+  "version"        : "0.0.0-semantically-released",
   "description"    : "A webpack loader for hodorifying JavaScript code",
   "keywords"       : [
     "hodor",
@@ -19,9 +20,9 @@
     "url" : "https://github.com/dwiyatci/hodor-loader.git"
   },
   "scripts"        : {
+    "clean"           : "rimraf dist",
     "install:global"  : "npm install rimraf updtr webpack webpack-dev-server babel-cli tape semantic-release-cli -g",
     "install:clean"   : "rimraf node_modules && npm install",
-    "clean"           : "rimraf dist",
     "webpack"         : "webpack",
     "watch"           : "webpack -w",
     "start"           : "webpack-dev-server --inline --hot",
