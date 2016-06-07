@@ -1,7 +1,7 @@
 {
-  "name": "hodor-loader",
-  "description": "A webpack loader for hodorifying JavaScript code",
-  "keywords": [
+  "name"           : "hodor-loader",
+  "description"    : "A webpack loader for hodorifying JavaScript code",
+  "keywords"       : [
     "hodor",
     "webpack-loader",
     "ecosystem:webpack",
@@ -10,41 +10,41 @@
     "lexer",
     "hold-the-door"
   ],
-  "homepage": "https://github.com/dwiyatci/hodor-loader",
-  "bugs": "https://github.com/dwiyatci/hodor-loader/issues",
-  "license": "SEE LICENSE IN LICENSE.txt",
-  "author": "Glenn Dwiyatcita <dwiyatci@mail.com> (https://tiny.cc/dwiyatci)",
-  "repository": {
+  "homepage"       : "https://github.com/dwiyatci/hodor-loader",
+  "bugs"           : "https://github.com/dwiyatci/hodor-loader/issues",
+  "license"        : "SEE LICENSE IN LICENSE.txt",
+  "author"         : "Glenn Dwiyatcita <dwiyatci@mail.com> (https://tiny.cc/dwiyatci)",
+  "repository"     : {
     "type": "git",
-    "url": "https://github.com/dwiyatci/hodor-loader.git"
+    "url" : "https://github.com/dwiyatci/hodor-loader.git"
   },
-  "scripts": {
-    "install:global": "npm install rimraf updtr webpack webpack-dev-server babel-cli tape semantic-release-cli -g",
-    "install:clean": "rimraf node_modules && npm install",
-    "clean": "rimraf dist",
-    "webpack": "webpack",
-    "watch": "webpack -w",
-    "start": "webpack-dev-server --inline --hot",
-    "update": "updtr",
-    "test": "babel-node test.js | tnyan",
-    "commit": "git-cz",
+  "scripts"        : {
+    "install:global"  : "npm install rimraf updtr webpack webpack-dev-server babel-cli tape semantic-release-cli -g",
+    "install:clean"   : "rimraf node_modules && npm install",
+    "clean"           : "rimraf dist",
+    "webpack"         : "webpack",
+    "watch"           : "webpack -w",
+    "start"           : "webpack-dev-server --inline --hot",
+    "update"          : "updtr",
+    "test"            : "babel-node test.js | tnyan",
+    "commit"          : "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "babel-cli": "6.9.0",
-    "babel-preset-es2015": "6.9.0",
-    "commitizen": "2.8.2",
+    "babel-cli"                : "6.9.0",
+    "babel-preset-es2015"      : "6.9.0",
+    "commitizen"               : "2.8.2",
     "cz-conventional-changelog": "1.1.6",
-    "html-webpack-plugin": "2.19.0",
-    "rimraf": "2.5.2",
-    "tap-nyan": "0.0.2",
-    "tape": "4.5.1",
-    "updtr": "0.1.15",
-    "webpack": "1.13.1",
-    "webpack-dev-server": "1.14.1",
-    "semantic-release": "^4.3.5"
+    "html-webpack-plugin"      : "2.19.0",
+    "rimraf"                   : "2.5.2",
+    "tap-nyan"                 : "0.0.2",
+    "tape"                     : "4.5.1",
+    "updtr"                    : "0.1.15",
+    "webpack"                  : "1.13.1",
+    "webpack-dev-server"       : "1.14.1",
+    "semantic-release"         : "^4.3.5"
   },
-  "config": {
+  "config"         : {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
