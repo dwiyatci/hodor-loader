@@ -2,56 +2,72 @@
  * Created by glenn on 01/06/16.
  */
 
-const path              = require('path');
+const join              = require('path').join;
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  devtool  : 'eval',
-  resolve  : {
-    root      : [
-      path.join(__dirname, 'src'),
-    ],
-    extensions: ['', '.js', '.html'],
-  },
-  entry    : {
-    app: [
-      './demo/app.js',
-    ],
-  },
-  output   : {
-    path      : path.join(__dirname, 'build/demo'),
-    filename  : '[name].js',
-    publicPath: '/',
-  },
-  plugins  : [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+module.exports = [
+  {
+    devtool  : 'eval',
+    resolve  : {
+      extensions: ['', '.js', '.html'],
+    },
+    entry    : './demo/src/app.js',
+    output   : {
+      path    : join(__dirname, 'demo'),
+      filename: 'app.js',
+    },
+    plugins  : [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
 
-    new HtmlWebpackPlugin({
-      template: './demo/index.html',
-      favicon : './demo/favicon.ico',
-      filename: 'index.html',
-    }),
+      new HtmlWebpackPlugin({
+        template: './demo/src/index.tpl.html',
+        favicon : './demo/src/favicon.ico',
+        filename: 'index.html',
+      }),
 
-    new HelloWorldPlugin(),
-  ],
-  module   : {
-    loaders: [
-      {
-        test   : /\.js$/,
-        include: [
-          path.join(__dirname, 'demo'),
-        ],
-        loader : './',
-      },
+      new HelloWorldPlugin(),
     ],
+    module   : {
+      loaders: [
+        {
+          test   : /\.js$/,
+          include: [
+            join(__dirname, 'demo/src'),
+          ],
+          loader : './',
+        },
+      ],
+    },
+    devServer: {
+      noInfo            : true,
+      historyApiFallback: true,
+    },
   },
-  devServer: {
-    noInfo            : true,
-    historyApiFallback: true,
+  {
+    devtool: 'source-map',
+    entry  : './',
+    output : {
+      path         : join(__dirname, 'dist'),
+      filename     : 'index.js',
+      libraryTarget: 'commonjs2',
+    },
+    module : {
+      loaders: [
+        {
+          include: [
+            join(__dirname, 'index.js'),
+          ],
+          loader : 'babel',
+          query  : {
+            presets: ['es2015'],
+          },
+        },
+      ],
+    },
   },
-};
+];
 
 function HelloWorldPlugin() {
 }

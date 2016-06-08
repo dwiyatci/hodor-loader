@@ -13,6 +13,7 @@ before_script:
   - npm prune
 script:
   - npm run cov
+  - npm run build
 after_success:
   - npm run cov:report
   - npm run semantic-release
