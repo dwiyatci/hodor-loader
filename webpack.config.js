@@ -41,6 +41,7 @@ module.exports = [
       ],
     },
     devServer: {
+      contentBase       : 'demo/',
       noInfo            : true,
       historyApiFallback: true,
     },
