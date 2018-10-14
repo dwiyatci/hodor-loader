@@ -1,30 +1,39 @@
 /**
- * Created by glenn on 01/06/16.
+ * Created by glenn on 01.06.16.
+ * Updated on 14.10.18.
  */
 
-module.exports = function (source) {
+// const { getOptions } = require('loader-utils');
+// const validateOptions = require('schema-utils');
+//
+// const schema = {
+//   type: 'object',
+//   properties: {
+//     test: {
+//       type: 'string'
+//     }
+//   }
+// };
+const falafel = require('falafel');
 
-  // Mark the loader as cacheable (same result for same input).
-  this.cacheable();
+module.exports = function hodorLoader(source) {
+  // const options = getOptions(this);
+  // console.log(options);
 
-  function replacer(match, p1) {
-    return `'${
-      p1
-        .replace(/['"]/g, '')
-        .split(' ')
-        .map(word => word.replace(/^.*?([.,;:?!]|$)/, 'HODOR$1'))
-        .join(' ')
-      }'`;
-  }
+  // validateOptions(schema, options, 'Hodor Loader');
 
-  source = source.replace(/hodorify\((.*?)\)/gi, replacer);
+  // Apply some transformations to the source...
+  // console.log(source);
+  const transformed = falafel({ source }, (node) => {
+    if (node.type === 'Literal' && typeof node.value === 'string') {
+      node.update(node.source().replace(/\w+/g, 'HODOR'));
+    }
 
-  //source = function hodorify(str) {
-  //    return str
-  //      .split(' ')
-  //      .map(word => word.replace(/^.*?([.,;:?!]|$)/, 'HODOR$1')))
-  //      .join(' ');
-  //  }.toString() + source;
+    if (node.type === 'TemplateLiteral') {
+      node.update(node.source().replace(/\w+|\${.+}/g, 'HODOR'));
+    }
+  });
+  // console.log(transformed);
 
-  return source;
+  return transformed;
 };

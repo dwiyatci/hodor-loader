@@ -1,5 +1,5 @@
 /**
- * Created by glenn on 01/06/16.
+ * Created by glenn on 01.06.16.
  */
 
 import test from 'tape';

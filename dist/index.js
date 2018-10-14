@@ -1,2 +1,0 @@
-module.exports=function(r){function e(n){if(t[n])return t[n].exports;var o=t[n]={exports:{},id:n,loaded:!1};return r[n].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var t={};return e.m=r,e.c=t,e.p="",e(0)}([function(r,e){"use strict";r.exports=function(r){function e(r,e){return"'"+e.replace(/['"]/g,"").split(" ").map(function(r){return r.replace(/^.*?([.,;:?!]|$)/,"HODOR$1")}).join(" ")+"'"}return this.cacheable(),r=r.replace(/hodorify\((.*?)\)/gi,e)}}]);
-//# sourceMappingURL=index.js.map

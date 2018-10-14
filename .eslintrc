@@ -1,0 +1,14 @@
+---
+env:
+  browser: true
+  node: true
+  es6: true
+extends:
+  - airbnb-base
+  - prettier
+rules:
+  semi:
+  - error
+  no-use-before-define:
+  - error
+  - functions: false
