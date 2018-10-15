@@ -36,7 +36,7 @@
     "cov:generate": "istanbul cover test/loader.test.js",
     "cov:report": "cat ./coverage/lcov.info | codecov",
     "commit": "git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "falafel": "2.1.0",
