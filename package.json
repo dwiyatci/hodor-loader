@@ -40,7 +40,8 @@
   },
   "dependencies": {
     "falafel": "2.1.0",
-    "loader-utils": "1.1.0"
+    "loader-utils": "1.1.0",
+    "schema-utils": "1.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.1.2",
