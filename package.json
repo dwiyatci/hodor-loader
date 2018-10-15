@@ -14,7 +14,7 @@
   "homepage": "https://github.com/dwiyatci/hodor-loader",
   "bugs": "https://github.com/dwiyatci/hodor-loader/issues",
   "license": "SEE LICENSE IN LICENSE.txt",
-  "author": "Glenn Dwiyatcita <dwiyatci@mail.com> (https://tiny.cc/dwiyatci)",
+  "author": "Glenn Dwiyatcita <glenn@nonpartisan.com> (https://tiny.cc/dwiyatci)",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "test": "node test/loader.test.js",
     "cov": "yarn cov:clean && yarn cov:generate",
     "cov:clean": "rimraf coverage",
-    "cov:generate": "babel-node node_modules/.bin/isparta cover test.js",
+    "cov:generate": "istanbul cover test/loader.test.js",
     "cov:report": "cat ./coverage/lcov.info | codecov",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.1.2",
-    "@babel/node": "7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/plugin-transform-runtime": "7.1.0",
     "@babel/preset-env": "7.1.0",
@@ -59,7 +58,7 @@
     "ghooks": "2.0.4",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "4.0.0-beta.1",
-    "isparta": "4.1.0",
+    "istanbul": "0.4.5",
     "memory-fs": "0.4.1",
     "rimraf": "2.6.2",
     "semantic-release": "15.9.17",
