@@ -35,5 +35,5 @@ module.exports = function hodorLoader(source) {
   });
   // console.log(transformed);
 
-  return transformed;
+  return transformed.toString();
 };
