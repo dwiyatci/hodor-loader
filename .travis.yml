@@ -14,6 +14,7 @@ node_js:
 - '8'
 script:
 - yarn test
+- yarn test:nyan
 - yarn cov
 after_success:
 - yarn cov:report
