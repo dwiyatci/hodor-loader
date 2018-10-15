@@ -7,7 +7,7 @@ console.log('hello, world');
 
 document.querySelector('#app').textContent = 'the quick brown fox jumps over a lazy dog';
 
-//alert(hodorify("hold the door"));
+//alert("hold the door");
 
 document.writeln("hold, the; door!");
 
