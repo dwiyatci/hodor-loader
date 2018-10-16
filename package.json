@@ -36,6 +36,7 @@
     "cov:generate": "istanbul cover test/loader.test.js",
     "cov:report": "cat ./coverage/lcov.info | codecov",
     "commit": "git-cz",
+    "semantic-release-dry-run": "yarn semantic-release --dry-run",
     "semantic-release": "semantic-release"
   },
   "dependencies": {

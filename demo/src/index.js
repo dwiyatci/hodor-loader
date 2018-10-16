@@ -1,6 +1,6 @@
 /**
  * Created by glenn on 01.06.16.
- * Updated on 14.10.18.
+ * Last updated on 14.10.18.
  */
 
 console.log('hello, world');
