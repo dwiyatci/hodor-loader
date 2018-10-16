@@ -14,7 +14,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
 [![downloads](https://img.shields.io/npm/dt/hodor-loader.svg)](http://npm-stat.com/charts.html?package=hodor-loader)
 [![WTFPL License](https://img.shields.io/badge/license-WTFPL-red.svg)](https://raw.githubusercontent.com/dwiyatci/hodor-loader/master/LICENSE.txt)
 
-This [webpack](https://github.com/webpack/webpack) loader allows statically replacing string surrounded by `hodorify()` syntax in JavaScript source code with [Hodor](http://awoiaf.westeros.org/index.php/Hodor) before it gets bundled and interpreted.
+This [webpack](https://github.com/webpack/webpack) loader allows statically replacing string literal and literal template syntax in JavaScript source code with [Hodor](http://awoiaf.westeros.org/index.php/Hodor) before it gets bundled and interpreted.
 
 Smells like an experimental manipulative Lexer, huh?!
 
@@ -30,38 +30,43 @@ Smells like an experimental manipulative Lexer, huh?!
 
 ## Installation
 ```sh
-npm install hodor-loader --save-dev
+npm isntall hodor-loader --save-dev
 ```
 
 ## Usage
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+[Documentation: Using loaders](https://webpack.js.org/concepts/#loaders)
 
 ## Example
-Given this config:
+Given this webpack config:
 
 ```javascript
 {
+  ...,
   module: {
-    loaders: [
+    rules: [
       {
-        test  : /app\.js/,
-        loader: 'hodor',
-      },
-    ],
+        test: /\.m?js$/,
+        use: 'hodor-loader'
+      }
+    ]
   },
+  ...
 }
 ```
 
-It will transform `app.js` source code
+It will transform the matching JS file source code, e.g.
 
 ```javascript
-console.log(hodorify('hello, world'));
+console.log('hello, world');
 
-document.querySelector('#app').textContent = hodorify('the quick brown fox jumps over a lazy dog');
+document.querySelector('#app').textContent = 'the quick brown fox jumps over a lazy dog';
 
-//alert(hodorify("hold the door"));
+//alert("hold the door");
 
-document.writeln(hodorify("hold, the; door!"));
+document.writeln("hold, the; door!");
+
+const x = 42;
+console.log(`the answer is ${x}`);
 ```
 
 ...into:
@@ -69,11 +74,14 @@ document.writeln(hodorify("hold, the; door!"));
 ```javascript
 console.log('HODOR, HODOR');
 
-document.querySelector('#app').textContent = 'HODOR HODOR HODOR HODOR HODOR HODOR HODOR HODOR HODOR';
+document.querySelector('#HODOR').textContent = 'HODOR HODOR HODOR HODOR HODOR HODOR HODOR HODOR HODOR';
 
-//alert('HODOR HODOR HODOR');
+//alert("hold the door");
 
-document.writeln('HODOR, HODOR; HODOR!');
+document.writeln("HODOR, HODOR; HODOR!");
+
+const x = 42;
+console.log(`HODOR HODOR HODOR HODOR`);
 ```
 
 ## Author

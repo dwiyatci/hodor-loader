@@ -1,79 +1,73 @@
 /**
- * Created by glenn on 01/06/16.
+ * Created by glenn on 01.06.16.
+ * Last updated on 14.10.18.
  */
 
-const join              = require('path').join;
-const webpack           = require('webpack');
+const { resolve } = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HelloWorldPlugin = require('./hello-world-plugin');
 
-module.exports = [
-  {
-    devtool  : 'eval',
-    resolve  : {
-      extensions: ['', '.js', '.html'],
+module.exports = env => {
+  const config = {
+    mode: eitherDevOrProd('development', 'production'),
+    entry: './demo/src/index.js',
+    output: {
+      path: resolve(__dirname, 'demo/dist'),
+      filename: eitherDevOrProd('[name].js', '[name].[chunkhash].js')
     },
-    entry    : './demo/src/app.js',
-    output   : {
-      path    : join(__dirname, 'demo'),
-      filename: 'app.js',
+    module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: { cacheDirectory: true }
+            },
+            {
+              loader: resolve('./'),
+            }
+          ]
+        },
+        {
+          test: /\.html$/,
+          use: 'html-loader'
+        }
+      ]
     },
-    plugins  : [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
+    plugins: [
+      new webpack.ProgressPlugin(),
 
+      // Caching
       new HtmlWebpackPlugin({
         template: './demo/src/index.tpl.html',
-        favicon : './demo/src/favicon.ico',
-        filename: 'index.html',
+        favicon: './demo/src/favicon.ico'
       }),
 
-      new HelloWorldPlugin(),
+      new HelloWorldPlugin()
     ],
-    module   : {
-      loaders: [
-        {
-          test   : /\.js$/,
-          include: [
-            join(__dirname, 'demo/src'),
-          ],
-          loader : './',
-        },
-      ],
+    optimization: {
+      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+      splitChunks: {
+        chunks: 'all',
+        name: false
+      },
+      runtimeChunk: true
     },
     devServer: {
-      contentBase       : 'demo/',
-      noInfo            : true,
+      contentBase: resolve(__dirname, 'demo/dist'),
+      compress: true,
+      noInfo: false,
       historyApiFallback: true,
-    },
-  },
-  {
-    devtool: 'source-map',
-    entry  : './',
-    output : {
-      path         : join(__dirname, 'dist'),
-      filename     : 'index.js',
-      libraryTarget: 'commonjs2',
-    },
-    module : {
-      loaders: [
-        {
-          include: [
-            join(__dirname, 'index.js'),
-          ],
-          loader : 'babel',
-          query  : {
-            presets: ['es2015'],
-          },
-        },
-      ],
-    },
-  },
-];
+      https: true
+    }
+  };
 
-function HelloWorldPlugin() {
-}
-HelloWorldPlugin.prototype.apply = function (compiler) {
-  compiler.plugin('done', function () {
-    console.log('Hello World!');
-  });
+  return config;
+
+  function eitherDevOrProd(devStuff, prodStuff) {
+    return env && env.production ? prodStuff : devStuff;
+  }
 };
