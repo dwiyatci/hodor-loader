@@ -24,7 +24,7 @@ module.exports = function hodorLoader(source) {
 
   // Apply some transformations to the source...
   // console.log(source);
-  const transformed = falafel({ source }, (node) => {
+  const transformed = falafel({ source }, node => {
     if (node.type === 'Literal' && typeof node.value === 'string') {
       node.update(node.source().replace(/\w+/g, 'HODOR'));
     }
