@@ -1,6 +1,6 @@
 {
   "name": "hodor-loader",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A webpack loader for hodorifying JavaScript code",
   "keywords": [
     "hodor",
