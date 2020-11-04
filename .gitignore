@@ -1,7 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
+
 .DS_Store
 .idea
 .vscode
 node_modules
 coverage
 demo/dist
+.eslintcache
