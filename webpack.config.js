@@ -1,20 +1,21 @@
 /**
  * Created by glenn on 01.06.16.
- * Last updated on 14.10.18.
+ * Last updated on 04.11.20.
  */
 
-const { resolve } = require('path');
+const path = require('path');
 const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HelloWorldPlugin = require('./hello-world-plugin');
 
-module.exports = env => {
+module.exports = (env) => {
   const config = {
     mode: eitherDevOrProd('development', 'production'),
     entry: './demo/src/index.js',
     output: {
-      path: resolve(__dirname, 'demo/dist'),
-      filename: eitherDevOrProd('[name].js', '[name].[chunkhash].js')
+      filename: eitherDevOrProd('[name].js', '[name].[contenthash].js'),
+      path: path.resolve(__dirname, 'demo/dist'),
     },
     module: {
       rules: [
@@ -23,51 +24,74 @@ module.exports = env => {
           exclude: /(node_modules|bower_components)/,
           use: [
             {
+              // https://webpack.js.org/loaders/babel-loader
               loader: 'babel-loader',
-              options: { cacheDirectory: true }
+              options: {
+                cacheDirectory: true,
+              },
             },
             {
-              loader: resolve('./'),
-            }
-          ]
+              loader: path.resolve('./'),
+            },
+          ],
         },
         {
           test: /\.html$/,
-          use: 'html-loader'
-        }
-      ]
+          use: 'html-loader',
+        },
+      ],
     },
     plugins: [
       new webpack.ProgressPlugin(),
 
-      // Caching
+      // Output Management
+      // https://webpack.js.org/guides/output-management/#setting-up-htmlwebpackplugin
+      // https://webpack.js.org/guides/output-management/#cleaning-up-the-dist-folder
+      // Development
+      // https://webpack.js.org/guides/development/#using-watch-mode
+      new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
         template: './demo/src/index.tpl.html',
-        favicon: './demo/src/favicon.ico'
+        favicon: './demo/src/favicon.ico',
       }),
 
-      new HelloWorldPlugin()
+      new HelloWorldPlugin(),
     ],
     optimization: {
-      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: 'all',
-        name: false
-      },
-      runtimeChunk: true
+      // Caching
+      // https://webpack.js.org/guides/caching/#extracting-boilerplate
+      runtimeChunk: 'single',
     },
     devServer: {
-      contentBase: resolve(__dirname, 'demo/dist'),
+      contentBase: path.resolve(__dirname, 'demo/dist'),
       compress: true,
       noInfo: false,
       historyApiFallback: true,
-      https: true
-    }
+      https: true,
+      hot: true,
+      publicPath: '/',
+    },
+    // Persistent Caching
+    // https://webpack.js.org/blog/2020-10-10-webpack-5-release/#persistent-caching
+    cache: {
+      // 1. Set cache type to filesystem
+      type: 'filesystem',
+
+      buildDependencies: {
+        // 2. Add your config as buildDependency to get cache invalidation on config change
+        config: [__filename],
+
+        // 3. If you have other things the build depends on you can add them here
+        // Note that webpack, loaders and all modules referenced from your config are automatically added
+      },
+    },
   };
 
   return config;
 
+  // Production
+  // https://webpack.js.org/guides/production/#specify-the-mode
   function eitherDevOrProd(devStuff, prodStuff) {
-    return env && env.production ? prodStuff : devStuff;
+    return !(env && env.production) ? devStuff : prodStuff;
   }
 };

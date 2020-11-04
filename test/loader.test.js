@@ -4,7 +4,7 @@
  */
 
 const test = require('tape');
-const loader = require('../');
+const loader = require('../index');
 // const compiler = require('./compiler');
 //
 // test('hodor-loader test', async (t) => {
@@ -41,11 +41,7 @@ test('hodor-loader test', (t) => {
     'should handle string concatenation correctly'
   );
 
-  t.equal(
-    loader('let x = 42;'),
-    'let x = 42;',
-    'should not pick up number literal'
-  );
+  t.equal(loader('let x = 42;'), 'let x = 42;', 'should not pick up number literal');
 
   t.equal(
     loader('/* Created by glenn on 01.06.16. */ // const x = "tough and competent";'),
