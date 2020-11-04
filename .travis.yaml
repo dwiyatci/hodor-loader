@@ -18,6 +18,7 @@ script:
   - yarn cov
 after_success:
   - yarn cov:report
+  - yarn semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
