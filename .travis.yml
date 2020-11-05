@@ -1,23 +1,39 @@
-before_install: # if "install" is overridden
-  # Repo for Yarn
-  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq yarn
+# https://docs.travis-ci.com/user/languages/javascript-with-nodejs
+language: node_js
+os: linux
+dist: xenial
+
+# https://docs.travis-ci.com/user/caching
 cache:
   yarn: true
   directories:
     - node_modules
-language: node_js
-node_js:
-  - '10'
-script:
-  - yarn test
-  - yarn test:nyan
-  - yarn cov
-after_success:
-  - yarn cov:report
-  - yarn semantic-release
+
+# https://docs.travis-ci.com/user/for-beginners/#builds-stages-jobs-and-phases
+# https://docs.travis-ci.com/user/build-stages/#build-stages-and-deployments
+jobs:
+  # https://docs.travis-ci.com/user/job-lifecycle/
+  # https://config.travis-ci.com/ref/jobs
+  include:
+    - stage: build
+      script: yarn build
+
+    - stage: test
+      script: yarn test
+    - script: yarn test:nyan
+    - script: yarn cov
+      after_success:
+        - yarn cov:report
+
+    - stage: release
+      # https://semantic-release.gitbook.io/semantic-release/recipes/recipes/travis#node-js-projects-configuration
+      script: skip
+      deploy:
+        # https://docs.travis-ci.com/user/deployment#uploading-files-and-skip_cleanup
+        skip_cleanup: true
+        provider: script
+        script: yarn semantic-release
+
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
