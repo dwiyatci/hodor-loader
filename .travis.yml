@@ -21,8 +21,9 @@ jobs:
 
     - stage: test
       script: yarn test
-    - script: yarn test:nyan
-    - script: yarn cov
+    - script:
+        - yarn test:nyan
+        - yarn cov
       after_success:
         - yarn cov:report
 
