@@ -28,7 +28,7 @@ Smells like an experimental manipulative Lexer, huh?!
 ### Why?
 
 - HODOR IS ~~**NOT**~~ DEAD.
-- [You can’t beat Tape ⁉️](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)
+- [You can’t beat Tape 📼⁉](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4)
 
 ## Installation
 

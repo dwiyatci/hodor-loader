@@ -8,7 +8,7 @@ extends:
   - prettier
 rules:
   semi:
-  - error
+    - error
   no-use-before-define:
-  - error
-  - functions: false
+    - error
+    - functions:false
