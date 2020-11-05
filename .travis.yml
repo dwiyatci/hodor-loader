@@ -34,6 +34,7 @@ jobs:
         # https://docs.travis-ci.com/user/deployment#uploading-files-and-skip_cleanup
         provider: script
         script: yarn semantic-release
+        edge: true
 
 branches:
   except:
