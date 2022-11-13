@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "falafel": "2.2.4",
-    "loader-utils": "2.0.0",
+    "loader-utils": "2.0.3",
     "schema-utils": "3.0.0"
   },
   "devDependencies": {
